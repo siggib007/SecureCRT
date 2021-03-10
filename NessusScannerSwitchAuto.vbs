@@ -16,8 +16,8 @@ Sub Main
 	If crt.Session.Connected Then
 		crt.Session.Disconnect
 	end if
-  
-  crt.Screen.Synchronous = True
+
+ 	' crt.Screen.Synchronous = True
 
 	iLoc = instrrev(strInFile,".")
 	strOutFile = left(strInFile,iLoc) & "log"
@@ -25,7 +25,7 @@ Sub Main
 
 	msgbox("Log will be written to " & strOutFile)
 
-  Set fso = CreateObject("Scripting.FileSystemObject")
+  	Set fso = CreateObject("Scripting.FileSystemObject")
 	Set objFileIn  = fso.OpenTextFile(strInFile, ForReading, false)
 	Set objFileOut  = fso.OpenTextFile(strOutFile, ForWriting, True)
 	strKey = objFileIn.readline
@@ -34,33 +34,40 @@ Sub Main
 		strhost = objFileIn.readline
 		objFileOut.writeline "Connecting to #" & i & " " & strhost
 		cmd = "/SSH2 /ACCEPTHOSTKEYS /L " & strUserName & " " & strhost
+		on error resume next
 		crt.Session.Connect cmd
-		crt.Screen.Send chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed status" & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-    ' exit sub 
-		crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed unlink --force" & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "sudo systemctl stop nessusd" & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli fix --reset" & chr(13)
-		crt.Screen.WaitForString "Do you want to proceed? (y/n) [n]: "
-		crt.Screen.Send "y" & chr(13)
-		crt.Screen.WaitForString  " ~]$ "
-		crt.Screen.Send "sudo systemctl start nessusd" & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "sudo systemctl status nessusd" & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed link --cloud --key=" & strKey & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed status" & chr(13)
-		crt.Screen.WaitForString "[" & strUserName & "@"
-		crt.Screen.Send "exit" & chr(13)
+		on error goto 0
 		If crt.Session.Connected Then
-			crt.Session.Disconnect
-		end if
-		objFileOut.writeline "Completed #" & i & " " & strhost & vbcrlf
+			crt.Screen.Send chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.WaitForString "~]$ "
+			crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed status" & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.WaitForString "~]$ "
+			crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed unlink --force" & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.WaitForString "~]$ "
+			crt.Screen.Send "sudo systemctl stop nessusd" & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli fix --reset" & chr(13)
+			crt.Screen.WaitForString "Do you want to proceed? (y/n) [n]: "
+			crt.Screen.Send "y" & chr(13)
+			crt.Screen.WaitForString  " ~]$ "
+			crt.Screen.Send "sudo systemctl start nessusd" & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.Send "sudo systemctl status nessusd" & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed link --cloud --key=" & strKey & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.Send "sudo /opt/nessus/sbin/nessuscli managed status" & chr(13)
+			crt.Screen.WaitForString "[" & strUserName & "@"
+			crt.Screen.Send "exit" & chr(13)
+		  objFileOut.writeline "Completed #" & i & " " & strhost & vbcrlf
+      If crt.Session.Connected Then
+        crt.Session.Disconnect
+      end if
+		else
+      objFileOut.writeline "Failed to connect to #" & i & " " & strhost & vbcrlf
 		i = i + 1
 	wend
 	i = i - 1
