@@ -1,0 +1,81 @@
+hostname,session_name,protocol,username,folder,emulation,description
+192.168.1.21,ASR9k-01,ssh2,labuser,P1 VPN,vt100,Cisco ASR9000 \r console: Lantronix-02 port:NA
+192.168.1.24,ASR9k-02,ssh2,labuser,P1 VPN,vt100,Cisco ASR9000 \r console: Lantronix-02 port:NA
+192.168.1.27,ASR9k-03,ssh2,labuser,P1 VPN,vt100,Cisco ASR9000 \r console: Lantronix-02 port:NA
+192.168.1.30,ASR9k-04,ssh2,labuser,P1 VPN,vt100,Cisco ASR9000 \r console: Lantronix-02 port:NA
+192.168.1.33,ASR9k-05,ssh2,labuser,P1 VPN,vt100,Cisco ASR9000 \r console: Lantronix-02 port:NA
+192.168.1.36,ASR9k-06,ssh2,labuser,P1 VPN,vt100,Cisco ASR9000 \r console: Lantronix-02 port:NA
+192.168.1.39,7606-01,ssh2,labuser,P1 VPN,vt100,Cisco 7606 \r console: Lantronix-02 port:13-14
+192.168.1.40,7606-02,ssh2,labuser,P1 VPN,vt100,Cisco 7606 \r console: Lantronix-02 port:15-16
+192.168.1.41,7606-03,ssh2,labuser,P1 VPN,vt100,Cisco 7606-S \r console: Lantronix-02 port:17-18
+192.168.1.42,7606-04,ssh2,labuser,P1 VPN,vt100,Cisco 7606-S \r console: Lantronix-02 port:19-20
+192.168.1.43,7606-05,ssh2,labuser,P1 VPN,vt100,Cisco 7606-S \r console: Lantronix-02 port:21-22
+192.168.1.44,7606-06,ssh2,labuser,P1 VPN,vt100,Cisco 7606-S \r console: Lantronix-02 port:23-24
+192.168.1.45,4900M-01,ssh2,labuser,P1 VPN,vt100,Cisco 4900M \r console: Lantronix-02 port:29
+192.168.1.46,4900M-02,ssh2,labuser,P1 VPN,vt100,Cisco 4900M \r console: Lantronix-02 port:26
+192.168.1.47,4900M-03,ssh2,labuser,P1 VPN,vt100,Cisco 4900M \r console: Lantronix-02 port:27
+192.168.1.48,4900M-04,ssh2,labuser,P1 VPN,vt100,Cisco 4900M \r console: Lantronix-02 port:28
+192.168.1.49,NX5548UP-01,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 5548UP \r console: Lantronix-02 port:25
+192.168.1.50,NX5548UP-02,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 5548UP \r console: Lantronix-02 port:26
+192.168.1.51,NX5548UP-03,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 5548UP \r console: Lantronix-02 port:31
+192.168.1.52,NX5548UP-04,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 5548UP \r console: Lantronix-02 port:32
+192.168.1.53,4948E-01,ssh2,labuser,P1 VPN,vt100,Cisco 4948E \r console: Lantronix-02 port:33
+192.168.1.54,4948E-02,ssh2,labuser,P1 VPN,vt100,Cisco 4948E \r console: Lantronix-02 port:34
+192.168.1.55,4948E-03,ssh2,labuser,P1 VPN,vt100,Cisco 4948E \r console: Lantronix-02 port:35
+192.168.1.56,4948E-04,ssh2,labuser,P1 VPN,vt100,Cisco 4948E \r console: Lantronix-02 port:36
+192.168.1.57,NX7010-01,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 7010 \r console: Lantronix-03 port:1-2
+192.168.1.58,NX7010-02,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 7010 \r console: Lantronix-03 port:3-4
+192.168.1.59,NX7010-03,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 7010 \r console: Lantronix-03 port:5-6
+192.168.1.60,NX7010-04,ssh2,labuser,P1 VPN,vt100,Cisco Nexus 7010 \r console: Lantronix-03 port:7-8
+192.168.1.61,CBX80-01-CPM1,ssh2,labuser,P1 VPN,vt100,Crossbeam X80 CPM 13 \r console: Lantronix-03 port:9
+192.168.1.62,CBX80-01-CPM2,ssh2,labuser,P1 VPN,vt100,Crossbeam X80 CPM 14 \r console: Lantronix-03 port:10
+192.168.1.63,CBX80-02-CPM1,ssh2,labuser,P1 VPN,vt100,Crossbeam X80 CPM 13 \r console: Lantronix-03 port:11
+192.168.1.64,CBX80-02-CPM2,ssh2,labuser,P1 VPN,vt100,Crossbeam X80 CPM 14 \r console: Lantronix-03 port:23
+192.168.1.65,7750-01,ssh2,labuser,P1 VPN,vt100,Alcatel-Lucent 7750 \r console: Lantronix-03 port:13-14
+192.168.1.67,7705-01,ssh2,labuser,P1 VPN,vt100,Alcatel-Lucent 7705 \r console: Lantronix-03 port:17
+192.168.1.68,7705-02,ssh2,labuser,P1 VPN,vt100,Alcatel-Lucent 7705 \r console: Lantronix-03 port:18
+192.168.1.73,SLC48-01,ssh2,labuser,P1 VPN,vt100,Lantronix PCMCIA \r console: Lantronix-03 port:44
+192.168.1.74,SLC48-02,ssh2,labuser,P1 VPN,vt100,Lantronix SLC48 V3 USB \r console: Lantronix-03 port:43
+192.168.1.75,4507-03,ssh2,labuser,P1 VPN,vt100,Cisco 4507 \r console: Lantronix-01 port:39
+192.168.1.77,4507-01,ssh2,labuser,P1 VPN,vt100,Cisco 4507 \r console: Lantronix-01 port:25-26
+192.168.1.78,4507-02,ssh2,labuser,P1 VPN,vt100,Cisco 4507 \r console: Lantronix-01 port:27-28
+192.168.1.80,6509-02,ssh2,labuser,P1 VPN,vt100,Cisco Cat 6509 \r console: Lantronix-01 port:45-46
+192.168.1.81,6506-01,ssh2,labuser,P1 VPN,vt100,Cisco Cat 6506 \r console: Lantronix-01 port:?
+192.168.1.82,6506-02,ssh2,labuser,P1 VPN,vt100,Cisco Cat 6506 \r console: Lantronix-01 port:?
+192.168.1.83,6506-03,ssh2,labuser,P1 VPN,vt100,Cisco Cat 6506 \r console: Lantronix-01 port:35-36
+192.168.1.84,6506-04,ssh2,labuser,P1 VPN,vt100,Cisco Cat 6506 \r console: Lantronix-01 port:37
+192.168.1.85,4402-01,ssh2,labuser,P1 VPN,vt100,Cisco 4402 \r console: Lantronix-01 port:23
+192.168.1.86,4402-02,ssh2,labuser,P1 VPN,vt100,Cisco 4402 \r console: Lantronix-01 port:24
+192.168.1.87,3725-01,ssh2,labuser,P1 VPN,vt100,Cisco 3725 \r console: Lantronix-01 port:20
+192.168.1.88,3725-02,ssh2,labuser,P1 VPN,vt100,Cisco 3725 \r console: Lantronix-01 port:21
+192.168.1.89,3825-01,ssh2,labuser,P1 VPN,vt100,Cisco 3825 \r console: Lantronix-01 port:22
+192.168.1.90,3550-01,ssh2,labuser,P1 VPN,vt100,Cisco 3550 \r console: Lantronix-01 port:15
+192.168.1.91,3550-02,ssh2,labuser,P1 VPN,vt100,Cisco 3550 \r console: Lantronix-01 port:16
+192.168.1.92,3550-03,ssh2,labuser,P1 VPN,vt100,Cisco 3550 \r console: Lantronix-01 port:17
+192.168.1.93,3560-01,ssh2,labuser,P1 VPN,vt100,Cisco 3560 \r console: Lantronix-01 port:18
+192.168.1.94,3560-02,ssh2,labuser,P1 VPN,vt100,Cisco 3560 \r console: Lantronix-01 port:19
+192.168.1.95,2851-01,ssh2,labuser,P1 VPN,vt100,Cisco 2851 \r console: Lantronix-01 port:13
+192.168.1.96,2851-02,ssh2,labuser,P1 VPN,vt100,Cisco 2851 \r console: Lantronix-01 port:14
+192.168.1.97,7206-01,ssh2,labuser,P1 VPN,vt100,Cisco 7206VXR \r console: Lantronix-01 port:38
+192.168.1.98,4948-01,ssh2,labuser,P1 VPN,vt100,Cisco 4948 \r console: Lantronix-01 port:1
+192.168.1.99,LTM6500-01,ssh2,labuser,P1 VPN,vt100,F5 6500 \r console: Lantronix-01 port:34
+192.168.1.100,PIX515-01,ssh2,labuser,P1 VPN,vt100,Cisco PIX 515 \r console: Lantronix-01 port:47
+192.168.1.101,ASA5505-01,ssh2,labuser,P1 VPN,vt100,Cisco ASA 5505 \r console: Lantronix-01 port:29
+192.168.1.102,ASA5505-02,ssh2,labuser,P1 VPN,vt100,Cisco ASA 5505 \r console: Lantronix-01 port:30
+192.168.1.105,3750-01,ssh2,labuser,P1 VPN,vt100,Cisco 3750G \r console: Lantronix-01 port:43
+192.168.1.106,3945-01,ssh2,labuser,P1 VPN,vt100,Cisco 3945 \r console: Lantronix-01 port:??
+192.168.1.107,3com-3812,ssh2,labuser,P1 VPN,vt100,3com 3812 \r console: Lantronix-02 port:44
+192.168.1.108,x250e-01,ssh2,labuser,P1 VPN,vt100,extreme x250e \r console: tbd port:tbd
+192.168.1.109,A10-01,ssh2,labuser,P1 VPN,vt100,SoftAX VM \r console: na port:na
+192.168.1.110,A10-02,ssh2,labuser,P1 VPN,vt100,SoftAX VM \r console: na port:na
+192.168.1.116,3064-01,ssh2,labuser,P1 VPN,vt100,Cisco Nexus \r console: Lantronix-02 port:41
+192.168.1.117,3064-02,ssh2,labuser,P1 VPN,vt100,Cisco Nexus \r console: Lantronix-03 port:31 
+192.168.1.111,AX3030-01,ssh2,labuser,P1 VPN,vt100,A10 AX3030 \r console: Lantronix-02 port:38 
+192.168.1.112,AX3030-02,ssh2,labuser,P1 VPN,vt100,A10 AX3030 \r console: Lantronix-02 port:37 
+192.168.1.113,AX3200-01,ssh2,labuser,P1 VPN,vt100,A10 AX3200-12 \r console: Lantronix-02 port:40 
+192.168.1.114,AX3200-02,ssh2,labuser,P1 VPN,vt100,A10 AX3200-12 \r console: Lantronix-02 port:39 
+192.168.1.115,ASR1004-01,ssh2,labuser,P1 VPN,vt100,cisco ASR 1004 \r console: Lantronix-03 port:23 
+192.168.1.202,GTM1600-01,ssh2,labuser,P1 VPN,vt100,F5 GTM 1600 \r console: Lantronix-02 port:45 
+192.168.1.203,GTM1600-02,ssh2,labuser,P1 VPN,vt100,F5 GTM 1600 \r console: Lantronix-02 port:46
+192.168.1.210,F5-LTM1,ssh2,labuser,P1 VPN,vt100,F5 Virt LTM 11.2 \r console: none port:xx 
+192.168.1.212,3400-01,ssh2,labuser,P1 VPN,vt100,F5 LTM 3400 \r console: none port:xx
