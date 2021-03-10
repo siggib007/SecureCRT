@@ -68,6 +68,7 @@ Sub Main
       end if
 		else
       objFileOut.writeline "Failed to connect to #" & i & " " & strhost & vbcrlf
+    end if
 		i = i + 1
 	wend
 	i = i - 1
