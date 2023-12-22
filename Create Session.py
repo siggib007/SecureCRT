@@ -13,8 +13,10 @@ Copyright 2023 Siggi Bjarnason
 import os
 import time
 import sys
+import csv
 
 iLogLevel = 5  # How much logging should be done. Level 10 is debug level, 0 is none
+strInFile = "C:/temp/conntest.csv"
 
 def CleanExit(strCause):
   """
@@ -60,6 +62,22 @@ def LogEntry(strMsg, iMsgLevel, bAbort=False):
   if bAbort:
     CleanExit("")
 
+def isInt(CheckValue):
+    """
+    function to safely check if a value can be interpreded as an int
+    Parameter:
+      Value: A object to be evaluated
+    Returns:
+      Boolean indicating if the object is an integer or not.
+    """
+    if isinstance(CheckValue, (float, int, str)):
+        try:
+            fTemp = int(CheckValue)
+        except ValueError:
+            fTemp = "NULL"
+    else:
+        fTemp = "NULL"
+    return fTemp != "NULL"
 
 def createSession(dictSession):
   """
@@ -90,10 +108,15 @@ def createSession(dictSession):
     strFW = dictSession["FW"]
   else:
     strFW = ""
+  if strFW != "":
+     strFW = "Session:" + strFW
   if "Port" in dictSession:
-    strPort = dictSession["Port"]
+    if isInt(dictSession["Port"]):
+      iPort = int(dictSession["Port"])
+    else:
+       iPort = 22
   else:
-    strPort = 22
+    iPort = 22
 
   try:
     objSession = crt.OpenSessionConfiguration(dictSession["Path"])
@@ -104,7 +127,7 @@ def createSession(dictSession):
   objSession.SetOption("Username",strUser)
   objSession.SetOption("Credential Title",strCred)
   objSession.SetOption("Firewall Name",strFW)
-  objSession.SetOption("[SSH2] Port",strPort)
+  objSession.SetOption("[SSH2] Port",iPort)
   objSession.Save(dictSession["Path"])
   return "Success"
 
@@ -124,20 +147,19 @@ def main():
       crt.Dialog.MessageBox("Attempting to create log directory: {}".format(strLogDir))
       os.makedirs(strLogDir)
 
-  strScriptName = os.path.basename(sys.argv[0])
+  strScriptName = os.path.basename(os.path.abspath(__file__))
   iLoc = strScriptName.rfind(".")
   strLogFile = strLogDir + strScriptName[:iLoc] + ISO + ".log"
   objLogOut = open(strLogFile, "w", 1)
   LogEntry("Starting up",3)
-
-  dictTemp = {}
-  dictTemp["Path"] = "mytest"
-  dictTemp["HostName"] = "mytest.supergeek.is"
-  dictTemp["Cred"] = "siggi-key"
-  dictTemp["FW"] = "Session:Nanitor\Nanitor Jump"
-  strRet = createSession(dictTemp)
-  LogEntry("create session returned:{}".format(strRet),4)
+  objInFile = open(strInFile,"r")
+  objReader = csv.DictReader(objInFile)
+  for dictTemp in objReader:
+    LogEntry("Working on {} - {}".format(dictTemp["Path"],dictTemp["HostName"]),4)
+    strRet = createSession(dictTemp)
+    LogEntry("create session returned:{}".format(strRet),4)
   LogEntry("Done",3)
+  objInFile.close()
   objLogOut.close()
   crt.Dialog.MessageBox("Done")
 
