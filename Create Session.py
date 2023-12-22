@@ -16,7 +16,6 @@ import sys
 import csv
 
 iLogLevel = 5  # How much logging should be done. Level 10 is debug level, 0 is none
-strInFile = "C:/temp/conntest.csv"
 
 def CleanExit(strCause):
   """
@@ -37,7 +36,6 @@ def CleanExit(strCause):
 
   objLogOut.close()
   sys.exit(9)
-
 
 def LogEntry(strMsg, iMsgLevel, bAbort=False):
   """
@@ -108,7 +106,7 @@ def createSession(dictSession):
     strFW = dictSession["FW"]
   else:
     strFW = ""
-  if strFW != "":
+  if strFW is not None and strFW != "":
      strFW = "Session:" + strFW
   if "Port" in dictSession:
     if isInt(dictSession["Port"]):
@@ -123,12 +121,15 @@ def createSession(dictSession):
   except Exception as err:
     objSession = crt.OpenSessionConfiguration()
 
-  objSession.SetOption("Hostname",strHostName)
-  objSession.SetOption("Username",strUser)
-  objSession.SetOption("Credential Title",strCred)
-  objSession.SetOption("Firewall Name",strFW)
-  objSession.SetOption("[SSH2] Port",iPort)
-  objSession.Save(dictSession["Path"])
+  try:
+    objSession.SetOption("Hostname",strHostName)
+    objSession.SetOption("Username",strUser)
+    objSession.SetOption("Credential Title",strCred)
+    objSession.SetOption("Firewall Name",strFW)
+    objSession.SetOption("[SSH2] Port",iPort)
+    objSession.Save(dictSession["Path"])
+  except Exception as err:
+     return err
   return "Success"
 
 def main():
@@ -152,7 +153,14 @@ def main():
   strLogFile = strLogDir + strScriptName[:iLoc] + ISO + ".log"
   objLogOut = open(strLogFile, "w", 1)
   LogEntry("Starting up",3)
-  objInFile = open(strInFile,"r")
+  strInFile = crt.Dialog.FileOpenDialog(title="Please select the Input File")
+  try:
+    objInFile = open(strInFile,"r")
+  except Exception as err:
+     LogEntry("failed to open file: {}".format(err),1)
+     objLogOut.close()
+     crt.Dialog.MessageBox("Failed to open infile")
+     sys.exit(0)
   objReader = csv.DictReader(objInFile)
   for dictTemp in objReader:
     LogEntry("Working on {} - {}".format(dictTemp["Path"],dictTemp["HostName"]),4)
