@@ -85,49 +85,67 @@ def createSession(dictSession):
   Returns:
     string with error or success
   """
-  if "Path" not in dictSession:
-    return "No Path"
-  if dictSession["Path"] == "":
-    return "No Path"
-
-  if "HostName" in dictSession:
-    strHostName = dictSession["HostName"]
+  if "Label" not in dictSession:
+    return "No Label"
   else:
-    strHostName = ""
+    strLabel = dictSession["Label"] or ""
+  if strLabel == "":
+    return "No Label"
+
+  if "Address" in dictSession:
+    strAddress = dictSession["Address"] or ""
+  else:
+    strAddress = ""
+  if strAddress == "":
+    return "No Address"
+
+  if "Group" in dictSession:
+    strGroup = dictSession["Group"] or ""
+  else:
+    strGroup = ""
   if "User" in dictSession:
-    strUser = dictSession["User"]
+    strUser = dictSession["User"] or ""
   else:
     strUser = ""
-  if "Cred" in dictSession:
-    strCred = dictSession["Cred"]
+  if "Identity" in dictSession:
+    strIdentity = dictSession["Identity"] or ""
   else:
-    strCred = ""
-  if "FW" in dictSession:
-    strFW = dictSession["FW"]
+    strIdentity = ""
+  if "Jump" in dictSession:
+    strJump = dictSession["Jump"] or ""
   else:
-    strFW = ""
-  if strFW is not None and strFW != "":
-     strFW = "Session:" + strFW
+    strJump = ""
+  if strJump != "":
+    if strGroup != "":
+      strJump = "Session:{}/{}".format(strGroup,strJump)
+    else:
+      strJump = "Session:{}".format(strJump)
   if "Port" in dictSession:
     if isInt(dictSession["Port"]):
       iPort = int(dictSession["Port"])
     else:
-       iPort = 22
+      iPort = 22
   else:
     iPort = 22
+  if strGroup != "":
+    strPath = "{}/{}".format(strGroup,strLabel)
+  else:
+    strPath = strLabel
 
+
+  LogEntry("Working on {} - {}".format(strLabel,strAddress),4)
   try:
     objSession = crt.OpenSessionConfiguration(dictSession["Path"])
   except Exception as err:
     objSession = crt.OpenSessionConfiguration()
 
   try:
-    objSession.SetOption("Hostname",strHostName)
+    objSession.SetOption("Hostname",strAddress)
     objSession.SetOption("Username",strUser)
-    objSession.SetOption("Credential Title",strCred)
-    objSession.SetOption("Firewall Name",strFW)
+    objSession.SetOption("Credential Title",strIdentity)
+    objSession.SetOption("Firewall Name",strJump)
     objSession.SetOption("[SSH2] Port",iPort)
-    objSession.Save(dictSession["Path"])
+    objSession.Save(strPath)
   except Exception as err:
      return err
   return "Success"
@@ -163,7 +181,6 @@ def main():
      sys.exit(0)
   objReader = csv.DictReader(objInFile)
   for dictTemp in objReader:
-    LogEntry("Working on {} - {}".format(dictTemp["Path"],dictTemp["HostName"]),4)
     strRet = createSession(dictTemp)
     LogEntry("create session returned:{}".format(strRet),4)
   LogEntry("Done",3)
