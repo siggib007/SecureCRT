@@ -107,10 +107,10 @@ def createSession(dictSession):
     strUser = dictSession["User"] or ""
   else:
     strUser = ""
-  if "Identity" in dictSession:
-    strIdentity = dictSession["Identity"] or ""
+  if "Credential" in dictSession:
+    strCredential = dictSession["Credential"] or ""
   else:
-    strIdentity = ""
+    strCredential = ""
   if "Jump" in dictSession:
     strJump = dictSession["Jump"] or ""
   else:
@@ -142,7 +142,7 @@ def createSession(dictSession):
   try:
     objSession.SetOption("Hostname",strAddress)
     objSession.SetOption("Username",strUser)
-    objSession.SetOption("Credential Title",strIdentity)
+    objSession.SetOption("Credential Title",strCredential)
     objSession.SetOption("Firewall Name",strJump)
     objSession.SetOption("[SSH2] Port",iPort)
     objSession.Save(strPath)
