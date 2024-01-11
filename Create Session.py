@@ -15,7 +15,7 @@ import time
 import sys
 import csv
 
-iLogLevel = 5  # How much logging should be done. Level 10 is debug level, 0 is none
+iLogLevel = 10  # How much logging should be done. Level 10 is debug level, 0 is none
 
 def CleanExit(strCause):
   """
@@ -179,8 +179,9 @@ def main():
      objLogOut.close()
      crt.Dialog.MessageBox("Failed to open infile")
      sys.exit(0)
-  objReader = csv.DictReader(objInFile)
+  objReader = csv.DictReader(objInFile, delimiter=";")
   for dictTemp in objReader:
+    LogEntry("dictTemp:{}".format(dictTemp),8)
     strRet = createSession(dictTemp)
     LogEntry("create session returned:{}".format(strRet),4)
   LogEntry("Done",3)
